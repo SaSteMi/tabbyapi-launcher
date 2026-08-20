@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tabbyapi-launcher"
+version = "1.0.0"
+description = "Launcher for tabbyAPI - handles everything from cloning to running"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "platformdirs>=4.11.3",
+]
+
+[project.scripts]
+tabbyapi = "tabbyapi_launcher:main"
+
+[tool.setuptools]
+packages = ["tabbyapi_launcher"]
