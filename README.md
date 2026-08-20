@@ -35,7 +35,7 @@ All arguments are passed through directly to the TabbyAPI startup script.
 ## Uninstall
 
 ```bash
-uv tool uninstall tabbyapi
+uv tool uninstall tabbyapi-launcher
 ```
 
 You may also wish to remove the cloned repository or config directory (both paths are printed out at startup).
