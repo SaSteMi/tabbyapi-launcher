@@ -4,7 +4,7 @@ A minimal launcher that wrapps [TabbyAPI](https://github.com/theroyallab/tabbyAP
 
 ## Installation
 
-Install using `uv tool`/`pipx`:
+Install using `[uv](https://docs.astral.sh/uv/getting-started/installation/) tool`/`pipx`:
 
 ```bash
 uv tool install tabbyapi-launcher
