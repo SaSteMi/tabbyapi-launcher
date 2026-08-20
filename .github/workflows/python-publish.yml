@@ -18,9 +18,18 @@ permissions:
 jobs:
   release-build:
     runs-on: ubuntu-latest
+    outputs:
+      # Removes leading 'v' for exact PyPI link
+      version: ${{ steps.clean_version.outputs.version }}
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Remove leading 'v' for PyPI url
+        id: clean_version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          echo "version=${TAG#v}" >> $GITHUB_OUTPUT
 
       - uses: actions/setup-python@v5
         with:
@@ -29,7 +38,7 @@ jobs:
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.
-          python -m pip install build
+          python -m pip install --upgrade pip build
           python -m build
 
       - name: Upload distributions
@@ -55,7 +64,7 @@ jobs:
       #
       # ALTERNATIVE: if your GitHub Release name is the PyPI project version string
       # ALTERNATIVE: exactly, uncomment the following line instead:
-      # url: https://pypi.org/project/YOURPROJECT/${{ github.event.release.name }}
+      url: https://pypi.org/project/tabbyapi-launcher/${{ needs.release-build.outputs.version }}
 
     steps:
       - name: Retrieve release distributions
